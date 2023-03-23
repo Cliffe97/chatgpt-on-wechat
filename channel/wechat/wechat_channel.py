@@ -77,6 +77,7 @@ class WechatChannel(Channel):
         other_user_id = msg['User']['UserName']     # 对手方id
         create_time = msg['CreateTime']             # 消息时间
         match_prefix = self.check_prefix(content, conf().get('single_chat_prefix'))
+        logger.info("[WX]FromeUserName: "+from_user_id+" ToUserName: "+to_user_id+" otherUser: "+other_user_id)
         if conf().get('hot_reload') == True and int(create_time) < int(time.time()) - 60:    #跳过1分钟前的历史消息
             logger.debug("[WX]history message skipped")
             return

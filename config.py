@@ -2,11 +2,18 @@
 
 import json
 import os
+from dotenv import load_dotenv
+
 from common.log import logger
 
 config = {}
-
-
+load_dotenv()
+settings = {
+    'host': os.getenv('ACCOUNT_HOST', '0'),
+    'master_key': os.getenv('ACCOUNT_KEY', '0'),
+    'database_id': os.environ.get('COSMOS_DATABASE', 'ChatBotDB'),
+    'container_id': os.environ.get('COSMOS_CONTAINER', 'Customers'),
+}
 def load_config():
     global config
     config_path = "./config.json"
